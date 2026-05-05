@@ -1,0 +1,2 @@
+# The TFC Food Processing Compat mod!
+This is a mod that adds compatibility to process foods from TFC, enabling food data preservation and preventing players from creating fresh foods out of old ingredients! I have covered Create's bulk smoking, Farmer's Delight's cutting board, and Firmalife's mixing bowl. If you have any more mods you want to make compatible with TFC foods, go on right ahead and make an issue!
