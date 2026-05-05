@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.thethirdswan.tfc_food_compat.mixin",
+  "refmap": "tfcfoodcompat.mixin.refmap.json",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinBulkSmokingCompat",
+    "MixinCuttingBoardCompat",
+    "MixinMixingBowlCompat"
+  ],
+  "minVersion": "0.8.3"
+}
