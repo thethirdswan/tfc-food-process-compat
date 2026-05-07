@@ -20,8 +20,9 @@ build
 # other
 eclipse
 run
-libs/*
 libs
+libs/*
+run-data/*
 run-data
 
 # Files from Forge MDK

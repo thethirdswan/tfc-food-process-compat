@@ -5,7 +5,6 @@ import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
-import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -29,10 +28,10 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
         super(type, pos, state, inventory, defaultName);
     }
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract @Nullable MixingBowlRecipe getRecipe();
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     public static int SLOTS;
 
@@ -51,7 +50,7 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
         for (int i = 0; i < SLOTS; i++) {
             inventory.setStackInSlot(i, htfc_subsidiaries$input.get(i));
         }
-        ItemStack output = getRecipe().assemble(inventory);
+        ItemStack output = getRecipe().assemble(inventory, level.registryAccess());
         int count = output.getCount();
         for (int i = 0; i < SLOTS; i++) {
             inventory.setStackInSlot(i, ItemStack.EMPTY);
@@ -61,7 +60,7 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
             if (count > 0)
             {
                 inventory.setStackInSlot(i,
-                        Helpers.copyWithSize(ItemStackProvider.of(output, CopyFoodModifier.INSTANCE).getStack(htfc_subsidiaries$input.get(i)), 1)
+                        ItemStackProvider.of(output, CopyFoodModifier.INSTANCE).getStack(htfc_subsidiaries$input.get(i)).copyWithCount(1)
                 );
                 count--;
             }

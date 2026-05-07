@@ -4,6 +4,7 @@ import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -27,8 +28,8 @@ import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
 import vectorwing.farmersdelight.common.crafting.CuttingBoardRecipe;
 import vectorwing.farmersdelight.common.registry.ModAdvancements;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
+import vectorwing.farmersdelight.common.utility.TextUtils;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mixin(CuttingBoardBlockEntity.class)
@@ -45,9 +46,6 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
     private ItemStackHandler inventory;
 
     @Shadow(remap = false)
-    public abstract ItemStack removeItem();
-
-    @Shadow(remap = false)
     public abstract void playProcessingSound(String soundEventID, ItemStack tool, ItemStack boardItem);
 
     @Shadow(remap = false)
@@ -58,8 +56,7 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
         Optional<CuttingBoardRecipe> matchingRecipe = getMatchingRecipe(new RecipeWrapper(this.inventory), toolStack, player);
 
         matchingRecipe.ifPresent((recipe) -> {
-            List<ItemStack> results = recipe.rollResults(level.random, EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, toolStack));
-            for (ItemStack resultStack : results) {
+            for (ItemStack resultStack : recipe.rollResults(this.level.random, EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BLOCK_FORTUNE, toolStack), new RecipeWrapper(this.inventory))) {
                 Direction direction = getBlockState().getValue(CuttingBoardBlock.FACING).getCounterClockWise();
                 ItemUtils.spawnItemEntity(level, ItemStackProvider.of(resultStack.copy(), CopyFoodModifier.INSTANCE).getStack(getStoredItem()),
                         worldPosition.getX() + 0.5 + (direction.getStepX() * 0.2), worldPosition.getY() + 0.2, worldPosition.getZ() + 0.5 + (direction.getStepZ() * 0.2),
@@ -73,9 +70,14 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
                 }
             }
             playProcessingSound(recipe.getSoundEventID(), toolStack, getStoredItem());
-            removeItem();
+            this.inventory.extractItem(0, 1, false);
             if (player instanceof ServerPlayer) {
-                ModAdvancements.CUTTING_BOARD.trigger((ServerPlayer) player);
+                ModAdvancements.CUTTING_BOARD.trigger((ServerPlayer)player);
+                if (!this.getStoredItem().isEmpty()) {
+                    player.displayClientMessage(TextUtils.block("cutting_board.remaining_items", new Object[]{this.getStoredItem().getCount()}), true);
+                } else {
+                    player.displayClientMessage(Component.empty(), true);
+                }
             }
         });
 

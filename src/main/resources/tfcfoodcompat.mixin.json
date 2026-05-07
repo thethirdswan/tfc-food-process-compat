@@ -8,5 +8,8 @@
     "MixinCuttingBoardCompat",
     "MixinMixingBowlCompat"
   ],
-  "minVersion": "0.8.3"
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
