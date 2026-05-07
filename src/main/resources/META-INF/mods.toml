@@ -1,6 +1,6 @@
 modLoader="javafml" #mandatory
 loaderVersion="[40,)"
-license="All Rights Reserved"
+license="Custom ARR"
 issueTrackerURL="https://github.com/thethirdswan/tfc-food-process-compat/issues"
 #clientSideOnly=true #optional - defaults to false if absent
 [[mods]]
