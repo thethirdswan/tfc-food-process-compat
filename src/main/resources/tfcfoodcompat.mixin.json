@@ -6,6 +6,7 @@
   "mixins": [
     "MixinBulkSmokingCompat",
     "MixinCuttingBoardCompat",
+    "MixinMillstoneCompat",
     "MixinMixingBowlCompat"
   ],
   "minVersion": "0.8",

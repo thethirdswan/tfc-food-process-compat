@@ -6,11 +6,11 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = 1
+version = "1.1.0"
 group = "com.thethirdswan.tfc_food_compat"
 
 base {
-    archivesName = "tfc_food_compat"
+    archivesName = "TFCFoodCompat-${minecraft_version}"
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -85,11 +85,15 @@ minecraft {
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
         }
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui'
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.
@@ -97,9 +101,13 @@ minecraft {
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             property 'forge.enabledGameTestNamespaces', mod_id
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
         }
 
         data {
+            property("mixin.env.remapRefMap", "true")
+            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
             // example of overriding the workingDirectory set in configureEach above
             workingDirectory project.file('run-data')
 
@@ -125,6 +133,9 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.ithundxr.dev/mirror" } // Registrate
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
 }
 
 dependencies {
@@ -143,12 +154,18 @@ dependencies {
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
     implementation fg.deobf("curse.maven:jei-238222:7920915")
-    implementation fg.deobf("curse.maven:create-328085:7178761")
     implementation fg.deobf("curse.maven:farmers-delight-398521:8007609")
     implementation fg.deobf("curse.maven:firmalife-453394:7602336")
     implementation fg.deobf("curse.maven:terrafirmacraft-302973:7730077")
     implementation fg.deobf("curse.maven:patchouli-306770:7731017")
 
+    implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
+    implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
+    compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
+    runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
+    implementation(fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}"))
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
@@ -186,9 +203,9 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                'Specification-Title'     : "tfc_food_compat",
+                'Specification-Title'     : "TFCFoodCompat-${minecraft_version}-${project.jar.archiveVersion}",
                 'Specification-Vendor'    : "thethirdswan",
-                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Specification-Version'   : project.jar.archiveVersion, // We are version 1 of ourselves
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : "thethirdswan",
