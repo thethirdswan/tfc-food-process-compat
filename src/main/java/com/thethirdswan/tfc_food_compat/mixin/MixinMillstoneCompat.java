@@ -4,7 +4,6 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
-import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.minecraft.core.BlockPos;
@@ -41,13 +40,12 @@ public class MixinMillstoneCompat extends KineticBlockEntity {
     @Inject(method = "process", at = @At(value = "HEAD"), remap = false)
     private void getInput(CallbackInfo ci) {
         tfc_food_process_compat$input = inputInv.getStackInSlot(0);
-        TFCFoodCompat.LOGGER.info("what's the item in inputInv of millstone: {}", tfc_food_process_compat$input);
     }
 
     @Inject(method = "process", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/kinetics/millstone/MillingRecipe;rollResults()Ljava/util/List;"), remap = false, cancellable = true)
     private void onProcess(CallbackInfo ci) {
         ItemStack craftingRemainingItem = inputInv.getStackInSlot(0).getCraftingRemainingItem();
-        lastRecipe.rollResults().forEach(item -> ItemHandlerHelper.insertItemStacked(outputInv, ItemStackProvider.of(item, CopyFoodModifier.INSTANCE).getStack(inputInv.getStackInSlot(0)), false));
+        lastRecipe.rollResults().forEach(item -> ItemHandlerHelper.insertItemStacked(outputInv, ItemStackProvider.of(item, CopyFoodModifier.INSTANCE).getStack(tfc_food_process_compat$input), false));
 
         if (!craftingRemainingItem.isEmpty()) ItemHandlerHelper.insertItemStacked(outputInv, ItemStackProvider.of(craftingRemainingItem, CopyFoodModifier.INSTANCE).getStack(tfc_food_process_compat$input), false);
 
