@@ -1,20 +1,28 @@
 package com.thethirdswan.tfc_food_compat.mixin;
 
+import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +34,7 @@ import vectorwing.farmersdelight.common.block.CuttingBoardBlock;
 import vectorwing.farmersdelight.common.block.entity.CuttingBoardBlockEntity;
 import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
 import vectorwing.farmersdelight.common.crafting.CuttingBoardRecipe;
+import vectorwing.farmersdelight.common.crafting.CuttingBoardRecipeInput;
 import vectorwing.farmersdelight.common.registry.ModAdvancements;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
 import vectorwing.farmersdelight.common.utility.TextUtils;
@@ -39,48 +48,64 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
     }
 
     @Shadow(remap = false)
-    protected abstract Optional<CuttingBoardRecipe> getMatchingRecipe(RecipeWrapper recipeWrapper, ItemStack toolStack, @Nullable Player player);
-
-    @Shadow(remap = false)
     @Final
     private ItemStackHandler inventory;
 
     @Shadow(remap = false)
-    public abstract void playProcessingSound(String soundEventID, ItemStack tool, ItemStack boardItem);
-
-    @Shadow(remap = false)
     public abstract ItemStack getStoredItem();
 
+    @Shadow(remap = false)
+    protected abstract Optional<RecipeHolder<CuttingBoardRecipe>> getMatchingRecipe(ItemStack toolStack, @Nullable Player player);
+
+    @Shadow(remap = false)
+    @Final
+    private RecipeManager.CachedCheck<CuttingBoardRecipeInput, CuttingBoardRecipe> quickCheck;
+
+    @Shadow(remap = false)
+    public abstract void spawnCuttingParticles(ServerLevel level, BlockPos pos, ItemStack stack);
+
+    @Shadow(remap = false)
+    public abstract void playProcessingSound(@Nullable SoundEvent sound, ItemStack tool, ItemStack boardItem);
+
+//    TODO figure out why did the result gets multiplied by the total items on the cutting board
     @Inject(method = "processStoredItemUsingTool", at = @At(value = "INVOKE", target = "Ljava/util/Optional;ifPresent(Ljava/util/function/Consumer;)V"), remap = false, cancellable = true)
     private void onProcessStoredItem(ItemStack toolStack, Player player, CallbackInfoReturnable<Boolean> cir) {
-        Optional<CuttingBoardRecipe> matchingRecipe = getMatchingRecipe(new RecipeWrapper(this.inventory), toolStack, player);
-
+        Optional<RecipeHolder<CuttingBoardRecipe>> matchingRecipe = this.getMatchingRecipe(toolStack, player);
         matchingRecipe.ifPresent((recipe) -> {
-            for (ItemStack resultStack : recipe.rollResults(this.level.random, EnchantmentHelper.getTagEnchantmentLevel(Enchantments.BLOCK_FORTUNE, toolStack), new RecipeWrapper(this.inventory))) {
-                Direction direction = getBlockState().getValue(CuttingBoardBlock.FACING).getCounterClockWise();
+            for(ItemStack resultStack : recipe.value().rollResults(this.level.random, EnchantmentHelper.getTagEnchantmentLevel(this.level.holder(Enchantments.FORTUNE).get(), toolStack), new RecipeWrapper(this.inventory))) {
+                Direction direction = this.getBlockState().getValue(CuttingBoardBlock.FACING).getCounterClockWise();
                 ItemUtils.spawnItemEntity(level, ItemStackProvider.of(resultStack.copy(), CopyFoodModifier.INSTANCE).getStack(getStoredItem()),
                         worldPosition.getX() + 0.5 + (direction.getStepX() * 0.2), worldPosition.getY() + 0.2, worldPosition.getZ() + 0.5 + (direction.getStepZ() * 0.2),
                         direction.getStepX() * 0.2F, 0.0F, direction.getStepZ() * 0.2F);
             }
-            if (player != null) {
-                toolStack.hurtAndBreak(1, player, (user) -> user.broadcastBreakEvent(EquipmentSlot.MAINHAND));
-            } else {
-                if (toolStack.hurt(1, level.random, null)) {
-                    toolStack.setCount(0);
+
+            if (!this.level.isClientSide) {
+                toolStack.hurtAndBreak(1, (ServerLevel)this.level, (ServerPlayer) player, (item) -> {
+                });
+                if (player != null) {
+                    player.awardStat(Stats.ITEM_USED.get(toolStack.getItem()));
                 }
             }
-            playProcessingSound(recipe.getSoundEventID(), toolStack, getStoredItem());
+
+            Level patt0$temp = this.level;
+            if (patt0$temp instanceof ServerLevel serverLevel) {
+                this.spawnCuttingParticles(serverLevel, this.getBlockPos(), this.getStoredItem());
+            }
+
+            this.playProcessingSound(recipe.value().getSoundEvent().orElse(null), toolStack, this.getStoredItem());
             this.inventory.extractItem(0, 1, false);
             if (player instanceof ServerPlayer) {
-                ModAdvancements.CUTTING_BOARD.trigger((ServerPlayer)player);
+                ModAdvancements.USE_CUTTING_BOARD.get().trigger((ServerPlayer)player);
                 if (!this.getStoredItem().isEmpty()) {
-                    player.displayClientMessage(TextUtils.block("cutting_board.remaining_items", new Object[]{this.getStoredItem().getCount()}), true);
+                    player.displayClientMessage(TextUtils.block("cutting_board.remaining_items", this.getStoredItem().getCount()), true);
                 } else {
                     player.displayClientMessage(Component.empty(), true);
                 }
             }
+
         });
 
+        TFCFoodCompat.LOGGER.info("cutting board compat called");
         cir.setReturnValue(matchingRecipe.isPresent());
     }
 }

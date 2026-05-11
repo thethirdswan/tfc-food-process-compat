@@ -1,7 +1,9 @@
 package com.thethirdswan.tfc_food_compat.mixin;
 
+import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
 import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
+import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
@@ -25,7 +27,7 @@ import java.util.List;
 @Mixin(MixingBowlBlockEntity.class)
 public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity<MixingBowlBlockEntity.MixingBowlInventory> {
     public MixinMixingBowlCompat(BlockEntityType<?> type, BlockPos pos, BlockState state, InventoryFactory<MixingBowlBlockEntity.MixingBowlInventory> inventory, Component defaultName) {
-        super(type, pos, state, inventory, defaultName);
+        super(type, pos, state, inventory, FirmaLife.MOD_ID);
     }
 
     @Shadow(remap = false)
@@ -45,7 +47,7 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
         }
     }
 
-    @Inject(method = "finishMixing", at = @At(value = "INVOKE", target = "Lcom/eerussianguy/firmalife/common/blockentities/MixingBowlBlockEntity$MixingBowlInventory;drain(ILnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;"), remap = false)
+    @Inject(method = "finishMixing", at = @At(value = "INVOKE", target = "Lcom/eerussianguy/firmalife/common/recipes/MixingBowlRecipe;getFluidIngredient()Ljava/util/Optional;"), remap = false)
     private void onFinishMixing(CallbackInfo ci) {
         for (int i = 0; i < SLOTS; i++) {
             inventory.setStackInSlot(i, htfc_subsidiaries$input.get(i));
@@ -69,6 +71,7 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
                 break;
             }
         }
+        TFCFoodCompat.LOGGER.info("finishMixing called");
         htfc_subsidiaries$input.clear();
     }
 }

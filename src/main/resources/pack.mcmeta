@@ -1,8 +1,6 @@
 {
   "pack": {
-    "description": {
-      "text": "tfc_food_compat resources"
-    },
-    "pack_format": 15
+    "description": "tfc_food_compat resources",
+    "pack_format": 34
   }
 }
