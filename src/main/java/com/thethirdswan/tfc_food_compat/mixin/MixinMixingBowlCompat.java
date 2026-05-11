@@ -29,10 +29,10 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
         super(type, pos, state, inventory, defaultName);
     }
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract @Nullable MixingBowlRecipe getRecipe();
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     public static int SLOTS;
 

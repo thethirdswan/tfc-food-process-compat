@@ -6,11 +6,11 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = 1
+version = "1.1.0"
 group = "com.thethirdswan.tfc_food_compat"
 
 base {
-    archivesName = "tfc_food_compat"
+    archivesName = "TFCFoodCompat-${minecraft_version}"
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -158,12 +158,12 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 
-    implementation fg.deobf("curse.maven:jei-238222:4593548")
+    implementation fg.deobf("curse.maven:jei-238222:5846864")
     implementation fg.deobf("curse.maven:terrafirmacraft-302973:5065452")
-    implementation fg.deobf("curse.maven:patchouli-306770:3729975")
+    implementation fg.deobf("curse.maven:patchouli-306770:3846086")
     implementation fg.deobf("curse.maven:farmers-delight-398521:4679315")
     implementation fg.deobf("curse.maven:firmalife-453394:4788653")
-    implementation fg.deobf("curse.maven:create-328085:4762214")
+    implementation fg.deobf("curse.maven:create-328085:5689512")
 }
 
 mixin {
@@ -193,9 +193,9 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                'Specification-Title'     : "tfc_food_compat",
+                'Specification-Title'     : "TFCFoodCompat-${minecraft_version}-${project.jar.archiveVersion}",
                 'Specification-Vendor'    : "thethirdswan",
-                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Specification-Version'   : project.jar.archiveVersion, // We are version 1 of ourselves
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : "thethirdswan",
