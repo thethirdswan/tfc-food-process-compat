@@ -1,11 +1,9 @@
 package com.thethirdswan.tfc_food_compat.mixin;
 
-import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -58,23 +55,18 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
     protected abstract Optional<RecipeHolder<CuttingBoardRecipe>> getMatchingRecipe(ItemStack toolStack, @Nullable Player player);
 
     @Shadow(remap = false)
-    @Final
-    private RecipeManager.CachedCheck<CuttingBoardRecipeInput, CuttingBoardRecipe> quickCheck;
-
-    @Shadow(remap = false)
     public abstract void spawnCuttingParticles(ServerLevel level, BlockPos pos, ItemStack stack);
 
     @Shadow(remap = false)
     public abstract void playProcessingSound(@Nullable SoundEvent sound, ItemStack tool, ItemStack boardItem);
 
-//    TODO figure out why did the result gets multiplied by the total items on the cutting board
     @Inject(method = "processStoredItemUsingTool", at = @At(value = "INVOKE", target = "Ljava/util/Optional;ifPresent(Ljava/util/function/Consumer;)V"), remap = false, cancellable = true)
     private void onProcessStoredItem(ItemStack toolStack, Player player, CallbackInfoReturnable<Boolean> cir) {
         Optional<RecipeHolder<CuttingBoardRecipe>> matchingRecipe = this.getMatchingRecipe(toolStack, player);
         matchingRecipe.ifPresent((recipe) -> {
             for(ItemStack resultStack : recipe.value().rollResults(this.level.random, EnchantmentHelper.getTagEnchantmentLevel(this.level.holder(Enchantments.FORTUNE).get(), toolStack), new RecipeWrapper(this.inventory))) {
                 Direction direction = this.getBlockState().getValue(CuttingBoardBlock.FACING).getCounterClockWise();
-                ItemUtils.spawnItemEntity(level, ItemStackProvider.of(resultStack.copy(), CopyFoodModifier.INSTANCE).getStack(getStoredItem()),
+                ItemUtils.spawnItemEntity(level, ItemStackProvider.of(resultStack.copy(), CopyFoodModifier.INSTANCE).getSingleStack(getStoredItem()),
                         worldPosition.getX() + 0.5 + (direction.getStepX() * 0.2), worldPosition.getY() + 0.2, worldPosition.getZ() + 0.5 + (direction.getStepZ() * 0.2),
                         direction.getStepX() * 0.2F, 0.0F, direction.getStepZ() * 0.2F);
             }
@@ -105,7 +97,6 @@ public abstract class MixinCuttingBoardCompat extends SyncedBlockEntity {
 
         });
 
-        TFCFoodCompat.LOGGER.info("cutting board compat called");
         cir.setReturnValue(matchingRecipe.isPresent());
     }
 }

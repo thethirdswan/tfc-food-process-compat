@@ -3,7 +3,6 @@ package com.thethirdswan.tfc_food_compat.mixin;
 import com.eerussianguy.firmalife.FirmaLife;
 import com.eerussianguy.firmalife.common.blockentities.MixingBowlBlockEntity;
 import com.eerussianguy.firmalife.common.recipes.MixingBowlRecipe;
-import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
@@ -62,7 +61,7 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
             if (count > 0)
             {
                 inventory.setStackInSlot(i,
-                        ItemStackProvider.of(output, CopyFoodModifier.INSTANCE).getStack(htfc_subsidiaries$input.get(i)).copyWithCount(1)
+                        ItemStackProvider.of(output, CopyFoodModifier.INSTANCE).getSingleStack(htfc_subsidiaries$input.get(i)).copyWithCount(1)
                 );
                 count--;
             }
@@ -71,7 +70,6 @@ public abstract class MixinMixingBowlCompat extends TickableInventoryBlockEntity
                 break;
             }
         }
-        TFCFoodCompat.LOGGER.info("finishMixing called");
         htfc_subsidiaries$input.clear();
     }
 }
