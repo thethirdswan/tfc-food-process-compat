@@ -1,0 +1,16 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredients": {
+    "amount": 1000,
+    "fluid": "firmalife:yeast_starter"
+  },
+  "item_ingredients": [
+    {
+      "item": "tfc:food/maize_flour"
+    }
+  ],
+  "result_item": {
+    "count": 1,
+    "id": "firmalife:food/maize_dough"
+  }
+}

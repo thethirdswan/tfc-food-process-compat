@@ -1,5 +1,6 @@
 package com.thethirdswan.tfc_food_compat;
 
+import com.thethirdswan.tfc_food_compat.data.DataGen;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -17,13 +18,14 @@ public class TFCFoodCompat {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "tfc_food_compat";
     // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
+    static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public TFCFoodCompat(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(DataGen::gatherData);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

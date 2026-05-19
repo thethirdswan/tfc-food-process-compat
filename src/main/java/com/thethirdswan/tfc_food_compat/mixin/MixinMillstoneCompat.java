@@ -39,7 +39,9 @@ public class MixinMillstoneCompat extends KineticBlockEntity {
 
     @Inject(method = "process", at = @At(value = "HEAD"), remap = false)
     private void getInput(CallbackInfo ci) {
-        tfc_food_process_compat$input = inputInv.getStackInSlot(0);
+        if (!inputInv.getStackInSlot(0).isEmpty()) {
+            tfc_food_process_compat$input = inputInv.getStackInSlot(0).copy();
+        }
     }
 
     @Inject(method = "process", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/kinetics/millstone/MillingRecipe;rollResults(Lnet/minecraft/util/RandomSource;)Ljava/util/List;"), remap = false, cancellable = true)

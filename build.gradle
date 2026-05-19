@@ -13,7 +13,7 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-version = "1.0.0"
+version = "1.1.0"
 group = "com.thethirdswan.tfc_food_compat"
 
 sourceSets.main.resources {
@@ -40,7 +40,7 @@ repositories {
 }
 
 base {
-    archivesName = "tfc_food_compat"
+    archivesName = "TFCFoodCompat-NeoForge-${minecraft_version}"
 }
 
 // Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.

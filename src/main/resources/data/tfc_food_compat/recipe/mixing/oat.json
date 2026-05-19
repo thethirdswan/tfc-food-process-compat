@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "tfc:food/oat_flour"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 200,
+      "fluid": "firmalife:yeast_starter"
+    }
+  ],
+  "results": [
+    {
+      "id": "firmalife:food/oat_dough"
+    }
+  ]
+}
