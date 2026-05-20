@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "tfc:food/oat_flour"
+    },
+    {
+      "amount": 200,
+      "fluid": "firmalife:yeast_starter",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "firmalife:food/oat_dough"
+    }
+  ]
+}

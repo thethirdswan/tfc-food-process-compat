@@ -1,0 +1,14 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "tfc:food/wheat_grain"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "item": "tfc:food/wheat_flour"
+    }
+  ]
+}

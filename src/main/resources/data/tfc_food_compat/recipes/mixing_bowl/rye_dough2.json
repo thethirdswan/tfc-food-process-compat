@@ -1,0 +1,21 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredient": {
+    "ingredient": {
+      "fluid": "firmalife:yeast_starter"
+    },
+    "amount": 1000
+  },
+  "ingredients": [
+    {
+      "item": "tfc:food/rye_flour"
+    },
+    {
+      "item": "tfc:food/rye_flour"
+    }
+  ],
+  "output_item": {
+    "count": 2,
+    "item": "firmalife:food/rye_dough"
+  }
+}

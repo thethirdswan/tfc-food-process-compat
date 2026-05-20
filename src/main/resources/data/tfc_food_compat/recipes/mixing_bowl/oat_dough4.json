@@ -1,0 +1,27 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredient": {
+    "ingredient": {
+      "fluid": "firmalife:yeast_starter"
+    },
+    "amount": 1000
+  },
+  "ingredients": [
+    {
+      "item": "tfc:food/oat_flour"
+    },
+    {
+      "item": "tfc:food/oat_flour"
+    },
+    {
+      "item": "tfc:food/oat_flour"
+    },
+    {
+      "item": "tfc:food/oat_flour"
+    }
+  ],
+  "output_item": {
+    "count": 4,
+    "item": "firmalife:food/oat_dough"
+  }
+}

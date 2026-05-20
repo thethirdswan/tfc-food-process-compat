@@ -1,0 +1,13 @@
+// 1.20.1	2026-05-20T12:14:53.8404503	TFC Food Compat's Create Recipes
+a76c27366ee1943bfa9490e689fe436cf45765ee data/tfc_food_compat/recipes/milling/barley.json
+a7c1654bbc585b4c38cf62cf60413d4d8e7aebb2 data/tfc_food_compat/recipes/milling/maize.json
+a165534e7a155372c52edb87c04608c31148b987 data/tfc_food_compat/recipes/milling/oat.json
+bd804d12da3522e4aa48ad5e87fd13b4e9dcf7c3 data/tfc_food_compat/recipes/milling/rice.json
+6ae636a364f6116ad40e970f8c739fb3aaa98862 data/tfc_food_compat/recipes/milling/rye.json
+91b06e7120ef89821fe670a1a072391caeeaf5c3 data/tfc_food_compat/recipes/milling/wheat.json
+350ef62ce78dbf1975659684d6bc50e7e1db7ceb data/tfc_food_compat/recipes/mixing/barley.json
+ebf6d5f7dd914bc7e2a3f15c0952ea1ee1571745 data/tfc_food_compat/recipes/mixing/maize.json
+62bc67f2043622edb3f3c16897672e1f006e7830 data/tfc_food_compat/recipes/mixing/oat.json
+07316f7609f801de2c418948a177c79718ef1858 data/tfc_food_compat/recipes/mixing/rice.json
+d407bb65c7ad34881c92ca7f507fe21d6634a8a7 data/tfc_food_compat/recipes/mixing/rye.json
+388b54939af8005b5cb2f32637724eab3e4e6f88 data/tfc_food_compat/recipes/mixing/wheat.json

@@ -1,0 +1,14 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "tfc:food/maize_grain"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "item": "tfc:food/maize_flour"
+    }
+  ]
+}
