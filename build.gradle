@@ -6,7 +6,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = "1.2.0"
+version = "1.2.1a"
 group = "com.thethirdswan.tfc_food_compat"
 
 base {
@@ -150,7 +150,7 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-238222:7920915")
     implementation fg.deobf("curse.maven:farmers-delight-398521:8007609")
     implementation fg.deobf("curse.maven:firmalife-453394:7602336")
-    implementation fg.deobf("curse.maven:terrafirmacraft-302973:7730077")
+    implementation fg.deobf("curse.maven:terrafirmacraft-302973:8242625")
     implementation fg.deobf("curse.maven:patchouli-306770:7731017")
 
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
