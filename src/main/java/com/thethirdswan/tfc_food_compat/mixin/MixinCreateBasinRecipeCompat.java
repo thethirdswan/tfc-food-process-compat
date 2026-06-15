@@ -19,8 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mixin(BasinRecipe.class)
-// TODO rename to CreateBasinRecipeCompat
-public class MixinCreateMixingCompat {
+public class MixinCreateBasinRecipeCompat {
     @Unique
     private static ItemStack tfc_food_process_compat$input = ItemStack.EMPTY;
 
