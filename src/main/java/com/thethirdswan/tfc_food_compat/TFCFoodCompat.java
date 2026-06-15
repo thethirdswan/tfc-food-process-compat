@@ -17,12 +17,15 @@ import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
 
+import static com.thethirdswan.tfc_food_compat.TFCFoodCompat.MOD_ID;
+
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("tfc_food_compat")
+@Mod(MOD_ID)
 public class TFCFoodCompat
 {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final String MOD_ID = "tfc_food_compat";
 
     public TFCFoodCompat()
     {

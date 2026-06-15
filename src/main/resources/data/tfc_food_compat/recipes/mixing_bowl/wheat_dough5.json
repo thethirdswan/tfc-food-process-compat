@@ -1,0 +1,30 @@
+{
+  "type": "firmalife:mixing_bowl",
+  "fluid_ingredient": {
+    "ingredient": {
+      "fluid": "firmalife:yeast_starter"
+    },
+    "amount": 1000
+  },
+  "ingredients": [
+    {
+      "item": "tfc:food/wheat_flour"
+    },
+    {
+      "item": "tfc:food/wheat_flour"
+    },
+    {
+      "item": "tfc:food/wheat_flour"
+    },
+    {
+      "item": "tfc:food/wheat_flour"
+    },
+    {
+      "item": "tfc:food/wheat_flour"
+    }
+  ],
+  "output_item": {
+    "count": 5,
+    "item": "firmalife:food/wheat_dough"
+  }
+}

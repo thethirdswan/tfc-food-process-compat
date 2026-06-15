@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "tfc:food/rye_flour"
+    },
+    {
+      "fluid": "firmalife:yeast_starter",
+      "nbt": {},
+      "amount": 200
+    }
+  ],
+  "results": [
+    {
+      "item": "firmalife:food/rye_dough"
+    }
+  ]
+}
