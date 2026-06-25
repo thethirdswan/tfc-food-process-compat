@@ -5,7 +5,7 @@ issueTrackerURL = "https://github.com/thethirdswan/tfc-food-process-compat/issue
 #clientSideOnly=true #optional - defaults to false if absent
 [[mods]]
 modId = "tfc_food_compat"
-version = "1.2.0"
+version="${mod_version}"
 displayName = "TFC Food Processing Compat"
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/tfc-food-processing-compat"
