@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CrushingWheelControllerBlockEntity.class)
 public class MixinCrushingWheelsCompat {
     @Unique
-    private ItemStack tfc_food_process_compat$input;
+    private ItemStack tfc_food_process_compat$input = ItemStack.EMPTY;
 
     @Inject(method = "intakeItem", at = @At(value = "HEAD"), remap = false)
     private void getInput(ItemEntity itemEntity, CallbackInfo ci) {
-        tfc_food_process_compat$input = itemEntity.getItem();
+        tfc_food_process_compat$input = itemEntity.getItem().copy();
     }
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"), index = 0)
