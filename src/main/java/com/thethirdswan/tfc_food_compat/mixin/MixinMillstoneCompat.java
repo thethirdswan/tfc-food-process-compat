@@ -31,7 +31,7 @@ public class MixinMillstoneCompat extends KineticBlockEntity {
     public ItemStackHandler inputInv;
 
     @Unique
-    private ItemStack tfc_food_process_compat$input;
+    private ItemStack tfc_food_process_compat$input = ItemStack.EMPTY;
 
     public MixinMillstoneCompat(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
