@@ -5,20 +5,14 @@
       "item": "tfc:food/rice_flour"
     },
     {
-      "fluid": "firmalife:yeast_starter",
+      "fluid": "minecraft:water",
       "nbt": {},
       "amount": 200
     }
   ],
   "results": [
     {
-      "item": "firmalife:food/rice_dough"
-    }
-  ],
-  "conditions": [
-    {
-      "modid": "firmalife",
-      "type": "forge:mod_loaded"
+      "item": "tfc:food/rice_dough"
     }
   ]
 }

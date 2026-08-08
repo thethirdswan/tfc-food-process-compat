@@ -58,7 +58,7 @@ modId = "firmalife"
 mandatory = false
 versionRange = "[1.2.18,)"
 ordering = "AFTER"
-side = "CLIENT"
+side = "BOTH"
 [[dependencies.tfc_food_compat]]
 modId = "farmersdelight"
 mandatory = false
