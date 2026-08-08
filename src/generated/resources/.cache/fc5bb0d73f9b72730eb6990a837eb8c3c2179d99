@@ -1,13 +1,19 @@
-// 1.20.1	2026-05-20T12:14:53.8404503	TFC Food Compat's Create Recipes
+// 1.20.1	2026-08-08T20:38:04.2907851	TFC Food Compat's Create Recipes
 a76c27366ee1943bfa9490e689fe436cf45765ee data/tfc_food_compat/recipes/milling/barley.json
 a7c1654bbc585b4c38cf62cf60413d4d8e7aebb2 data/tfc_food_compat/recipes/milling/maize.json
 a165534e7a155372c52edb87c04608c31148b987 data/tfc_food_compat/recipes/milling/oat.json
 bd804d12da3522e4aa48ad5e87fd13b4e9dcf7c3 data/tfc_food_compat/recipes/milling/rice.json
 6ae636a364f6116ad40e970f8c739fb3aaa98862 data/tfc_food_compat/recipes/milling/rye.json
 91b06e7120ef89821fe670a1a072391caeeaf5c3 data/tfc_food_compat/recipes/milling/wheat.json
-350ef62ce78dbf1975659684d6bc50e7e1db7ceb data/tfc_food_compat/recipes/mixing/barley.json
-ebf6d5f7dd914bc7e2a3f15c0952ea1ee1571745 data/tfc_food_compat/recipes/mixing/maize.json
-62bc67f2043622edb3f3c16897672e1f006e7830 data/tfc_food_compat/recipes/mixing/oat.json
-07316f7609f801de2c418948a177c79718ef1858 data/tfc_food_compat/recipes/mixing/rice.json
-d407bb65c7ad34881c92ca7f507fe21d6634a8a7 data/tfc_food_compat/recipes/mixing/rye.json
-388b54939af8005b5cb2f32637724eab3e4e6f88 data/tfc_food_compat/recipes/mixing/wheat.json
+8b52efc6049ef3488aa9b171d20c20fa3f831531 data/tfc_food_compat/recipes/mixing/barley.json
+9458c04ae9c31786a849d9f3425a7dd371c2822c data/tfc_food_compat/recipes/mixing/barley_flat.json
+6ed73b4594a1ce4dddd5f9197c33af52deb50845 data/tfc_food_compat/recipes/mixing/maize.json
+dc22aa358efa28dd73e585701922e095f8f0e85d data/tfc_food_compat/recipes/mixing/maize_flat.json
+d4ed86d358d34039b49113a6447884634c1e06ad data/tfc_food_compat/recipes/mixing/oat.json
+0ee5b6d0848d802fc292e750dcacd5ad9b92c94d data/tfc_food_compat/recipes/mixing/oat_flat.json
+e328de3b4c7d5ffc229b8bdfaa9e625d1687dff3 data/tfc_food_compat/recipes/mixing/rice.json
+cbfbb4700ba30654cc9be603c32b5ff48bf5f4ae data/tfc_food_compat/recipes/mixing/rice_flat.json
+37d34bc1282549294c5516d61f0e6b206766adcb data/tfc_food_compat/recipes/mixing/rye.json
+94719bffb49f6acaa3fbd14dde95666150c40516 data/tfc_food_compat/recipes/mixing/rye_flat.json
+7b2e2bbf995167556af076031f3fabfc6713c3d2 data/tfc_food_compat/recipes/mixing/wheat.json
+d6dde21bd1d4d7eb89aaf3e7b1a819bbe6ac6b98 data/tfc_food_compat/recipes/mixing/wheat_flat.json

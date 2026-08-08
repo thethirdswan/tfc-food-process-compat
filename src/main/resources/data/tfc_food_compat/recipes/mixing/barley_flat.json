@@ -1,24 +1,18 @@
 {
   "type": "create:mixing",
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "firmalife"
-    }
-  ],
   "ingredients": [
     {
       "item": "tfc:food/barley_flour"
     },
     {
       "amount": 200,
-      "fluid": "firmalife:yeast_starter",
+      "fluid": "minecraft:water",
       "nbt": {}
     }
   ],
   "results": [
     {
-      "item": "firmalife:food/barley_dough"
+      "item": "tfc:food/barley_dough"
     }
   ]
 }
