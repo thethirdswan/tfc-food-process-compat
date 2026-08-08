@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:mod_loaded",
-      "modid": "firmalife"
-    }
-  ],
   "type": "create:mixing",
   "ingredients": [
     {
@@ -13,12 +7,12 @@
     {
       "type": "neoforge:single",
       "amount": 200,
-      "fluid": "firmalife:yeast_starter"
+      "fluid": "minecraft:water"
     }
   ],
   "results": [
     {
-      "id": "firmalife:food/rice_dough"
+      "id": "tfc:food/rice_dough"
     }
   ]
 }
