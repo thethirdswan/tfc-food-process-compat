@@ -67,24 +67,6 @@ mandatory = true
 versionRange = "[1.21.1-93,)"
 ordering = "NONE"
 side = "CLIENT"
-[[dependencies.tfc_food_compat]]
-modId = "firmalife"
-mandatory = false
-versionRange = "[1.21.1-3.0.9,)"
-ordering = "BEFORE"
-side = "BOTH"
-[[dependencies.tfc_food_compat]]
-modId = "farmersdelight"
-mandatory = false
-versionRange = "[1.3.1,)"
-ordering = "BEFORE"
-side = "BOTH"
-[[dependencies.tfc_food_compat]]
-modId = "create"
-mandatory = false
-versionRange = "[6.0.10,)"
-ordering = "BEFORE"
-side = "CLIENT"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.
