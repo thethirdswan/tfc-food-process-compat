@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinBulkSmokingCompat",
+    "MixinCookingPotCompat",
     "MixinCreateBasinRecipeCompat",
     "MixinCrushingWheelsCompat",
     "MixinCuttingBoardCompat",
     "MixinMillstoneCompat",
-    "MixinMixingBowlCompat"
+    "MixinMixingBowlCompat",
+    "MixinThermopneumaticCompat"
   ],
   "minVersion": "0.8",
   "injectors": {

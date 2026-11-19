@@ -152,6 +152,7 @@ dependencies {
     implementation fg.deobf("curse.maven:firmalife-453394:7602336")
     implementation fg.deobf("curse.maven:terrafirmacraft-302973:8242625")
     implementation fg.deobf("curse.maven:patchouli-306770:7731017")
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:7307654")
 
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
