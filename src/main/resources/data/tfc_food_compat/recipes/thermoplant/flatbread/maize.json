@@ -1,0 +1,23 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "item_input": {
+    "item": "tfc:food/maize_dough"
+  },
+  "item_output": {
+    "item": "firmalife:food/maize_flatbread"
+  },
+  "temperature": {
+    "min_temp": 200
+  },
+  "exothermic": false,
+  "conditions": [
+    {
+      "modid": "pneumaticcraft",
+      "type": "forge:mod_loaded"
+    },
+    {
+      "modid": "firmalife",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

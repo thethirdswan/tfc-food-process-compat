@@ -12,7 +12,7 @@ displayName="TFC Food Processing Compat"
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://www.curseforge.com/minecraft/mc-mods/tfc-food-processing-compat"
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="placeholder.png"
+logoFile="food_processing_compat.jpg"
 credits="simibubi, vectorwing, EERussianguy"
 authors="The Third Swan"
 # Display Test controls the display for your mod in the server connection screen

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CrushingWheelControllerBlockEntity.class)
 public class MixinCrushingWheelsCompat {
-    @Shadow
+    @Shadow(remap = false)
     public ProcessingInventory inventory;
     @Unique
     private ItemStack tfc_food_process_compat$input = ItemStack.EMPTY;

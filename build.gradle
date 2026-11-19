@@ -164,6 +164,8 @@ dependencies {
     implementation fg.deobf("curse.maven:farmers-delight-398521:4679315")
     implementation fg.deobf("curse.maven:firmalife-453394:4788653")
     implementation fg.deobf("curse.maven:create-328085:5689512")
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:4922258")
+    implementation fg.deobf("blank:FarmersDelightTFC-1.18.2-forge:1.0.5")
 }
 
 mixin {
