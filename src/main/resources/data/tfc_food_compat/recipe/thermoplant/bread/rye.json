@@ -1,0 +1,16 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "inputs": {
+    "item": {
+      "item": "firmalife:food/rye_dough"
+    }
+  },
+  "outputs": {
+    "item_output": {
+      "id": "tfc:food/rye_bread"
+    }
+  },
+  "temperature": {
+    "min": 473
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "inputs": {
+    "item": {
+      "item": "tfc:food/rice_dough"
+    }
+  },
+  "outputs": {
+    "item_output": {
+      "id": "firmalife:food/rice_flatbread"
+    }
+  },
+  "temperature": {
+    "min": 473
+  }
+}

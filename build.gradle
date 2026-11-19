@@ -132,6 +132,8 @@ dependencies {
     implementation "curse.maven:terrafirmacraft-302973:8063726"
     implementation "curse.maven:firmalife-453394:8028300"
     implementation "curse.maven:farmers-delight-398521:8007613"
+    implementation "curse.maven:pneumaticcraft-repressurized-281849:9363728"
+    implementation "blank:FarmersDelight_TFC-1.21.1-neoforge:1.0.8"
 
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")

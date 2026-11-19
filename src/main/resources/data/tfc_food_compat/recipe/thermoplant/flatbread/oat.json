@@ -1,0 +1,16 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "inputs": {
+    "item": {
+      "item": "tfc:food/oat_dough"
+    }
+  },
+  "outputs": {
+    "item_output": {
+      "id": "firmalife:food/oat_flatbread"
+    }
+  },
+  "temperature": {
+    "min": 473
+  }
+}

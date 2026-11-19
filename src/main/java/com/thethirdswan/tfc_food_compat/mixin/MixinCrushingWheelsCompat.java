@@ -2,7 +2,6 @@ package com.thethirdswan.tfc_food_compat.mixin;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity;
 import com.simibubi.create.content.processing.recipe.ProcessingInventory;
-import com.thethirdswan.tfc_food_compat.TFCFoodCompat;
 import net.dries007.tfc.common.recipes.outputs.CopyFoodModifier;
 import net.dries007.tfc.common.recipes.outputs.ItemStackProvider;
 import net.minecraft.world.entity.Entity;
@@ -18,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CrushingWheelControllerBlockEntity.class)
 public class MixinCrushingWheelsCompat {
-    @Shadow
+    @Shadow(remap = false)
     public ProcessingInventory inventory;
     @Unique
     private ItemStack tfc_food_process_compat$input = ItemStack.EMPTY;
