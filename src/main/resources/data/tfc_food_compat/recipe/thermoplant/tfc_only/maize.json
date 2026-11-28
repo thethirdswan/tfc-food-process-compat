@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:mod_loaded",
+            "modid": "firmalife"
+          }
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "tfc"
+        }
+      ]
+    }
+  ],
+  "type": "pneumaticcraft:thermo_plant",
+  "inputs": {
+    "item": {
+      "item": "tfc:food/maize_dough"
+    }
+  },
+  "outputs": {
+    "item_output": {
+      "id": "tfc:food/maize_bread"
+    }
+  },
+  "temperature": {
+    "min": 473
+  }
+}

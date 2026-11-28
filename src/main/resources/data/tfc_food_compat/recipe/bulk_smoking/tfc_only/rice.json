@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "neoforge:not",
+          "value": {
+            "type": "neoforge:mod_loaded",
+            "modid": "firmalife"
+          }
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "tfc"
+        }
+      ]
+    }
+  ],
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.0,
+  "ingredient": {
+    "item": "tfc:food/rice_dough"
+  },
+  "result": {
+    "count": 1,
+    "id": "tfc:food/rice_bread"
+  }
+}
