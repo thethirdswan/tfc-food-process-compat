@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.0,
+  "ingredient": {
+    "item": "tfc:food/barley_dough"
+  },
+  "result": "firmalife:food/barley_flatbread"
+}

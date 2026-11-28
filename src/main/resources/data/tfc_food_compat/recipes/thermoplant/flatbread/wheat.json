@@ -7,7 +7,7 @@
     "item": "firmalife:food/wheat_flatbread"
   },
   "temperature": {
-    "min_temp": 200
+    "min_temp": 473
   },
   "exothermic": false,
   "conditions": [

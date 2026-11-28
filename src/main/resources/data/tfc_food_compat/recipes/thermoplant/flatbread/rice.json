@@ -7,7 +7,7 @@
     "item": "firmalife:food/rice_flatbread"
   },
   "temperature": {
-    "min_temp": 200
+    "min_temp": 473
   },
   "exothermic": false,
   "conditions": [
